@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}LeftoverBite{% endblock %}</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="{% url 'home' %}"><span class="brand-icon">🍴</span> Leftover<span>Bite</span></a>
+  <nav aria-label="Main navigation">
+    <a href="{% url 'home' %}" {% if request.resolver_match.url_name == "home" %}aria-current="page"{% endif %}>Home</a>
+    <a href="{% url 'overview' %}" {% if request.resolver_match.url_name == "overview" %}aria-current="page"{% endif %}>Overview</a>
+    <a href="{% url 'about' %}" {% if request.resolver_match.url_name == "about" %}aria-current="page"{% endif %}>About</a>
+    <a href="{% url 'donations' %}" {% if request.resolver_match.url_name == "donations" %}aria-current="page"{% endif %}>Find Food</a>
+    <a href="{% url 'request-food' %}" {% if request.resolver_match.url_name == "request-food" %}aria-current="page"{% endif %}>Request Food</a>
+  </nav>
+  <a class="nav-donate" href="{% url 'create-donation' %}">Donate food <span aria-hidden="true">→</span></a>
+  <div class="nav-auth">
+    {% if user.is_authenticated %}
+      <span class="nav-username">{{ user.username }}</span>
+      <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type="submit">Log out</button></form>
+    {% else %}
+      <a href="{% url 'login' %}">Log in</a>
+      <a class="nav-register" href="{% url 'register' %}">Register</a>
+    {% endif %}
+  </div>
+</header>
+
+{% if messages %}
+<div class="messages">{% for message in messages %}<div class="message">{{ message }}</div>{% endfor %}</div>
+{% endif %}
+
+{% block content %}{% endblock %}
+
+<footer class="footer">
+  <div><a class="brand footer-brand" href="{% url 'home' %}">🍴 Leftover<span>Bite</span></a>
+  <p>Rescue good food. Reduce waste. Feed communities.</p></div>
+  <div><h4>Explore</h4><a href="{% url 'overview' %}">Community overview</a><a href="{% url 'about' %}">About LeftoverBite</a><a href="{% url 'donations' %}">Find food</a></div>
+  <div><h4>Get Involved</h4><a href="{% url 'create-donation' %}">Donate surplus food</a><a href="{% url 'request-food' %}">Request food</a><a href="{% url 'donations' %}">Browse listings</a></div>
+  <div><h4>Categories</h4><a href="{% url 'donations' %}?food_type=meal">Meals</a><a href="{% url 'donations' %}?food_type=bakery">Bakery</a><a href="{% url 'donations' %}?food_type=vegetables">Vegetables</a></div>
+  <div><h4>Developer</h4><a href="/api/">Browsable API</a><a href="/admin/">Admin panel</a></div>
+</footer>
+</body>
+</html>

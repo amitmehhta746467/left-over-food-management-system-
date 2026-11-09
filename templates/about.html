@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}About Us — LeftoverBite{% endblock %}
+{% block content %}
+<main class="content-page">
+  <section class="about-hero">
+    <div class="eyebrow">ABOUT LEFTOVERBITE</div>
+    <h1>Good food belongs<br>on <em>someone's table.</em></h1>
+    <p>LeftoverBite helps people with surplus food connect with local people and organizations who can use it. We make it easier to share food before it goes to waste.</p>
+    <div class="cta-actions">
+      <a class="btn" href="{% url 'create-donation' %}">Share surplus food →</a>
+      <a class="outline-btn" href="{% url 'donations' %}">Find available food</a>
+    </div>
+  </section>
+
+  <section class="about-grid">
+    <article class="about-card mission-card"><span class="about-icon">🌱</span><div class="eyebrow">OUR MISSION</div><h2>Make sharing simple.</h2><p>We bring donors and local food recipients together around practical, timely food rescue. Every listing is an opportunity to make a useful connection in the community.</p></article>
+    <article class="about-card"><span class="about-icon">🤝</span><div class="eyebrow">COMMUNITY FIRST</div><h2>Local food, local impact.</h2><p>Nearby listings help food find a recipient without adding complicated steps. Donors and requesters coordinate pickup details around what works for them.</p></article>
+    <article class="about-card"><span class="about-icon">🕒</span><div class="eyebrow">SAFETY MATTERS</div><h2>Clear details help.</h2><p>Donors can describe the food, servings and safe pickup window so recipients can make informed requests and plan collection.</p></article>
+  </section>
+
+  <section class="about-process">
+    <div><div class="eyebrow">A SIMPLE WAY TO HELP</div><h2>From extra food<br>to a shared meal.</h2></div>
+    <div class="process-list">
+      <div><span>1</span><p><b>Donors post a listing.</b><br>Add the food type, quantity, location and pickup window.</p></div>
+      <div><span>2</span><p><b>Recipients find available food.</b><br>Search by location or browse the current listings.</p></div>
+      <div><span>3</span><p><b>Both sides coordinate pickup.</b><br>Share the details needed for a safe, timely handoff.</p></div>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="eyebrow">QUICK ANSWERS</div><h2>Good to know</h2>
+    <details><summary>Who can post a donation?</summary><p>Restaurants, shops, community groups, event organizers and households with surplus food can post a listing.</p></details>
+    <details><summary>How do I find food near me?</summary><p>Open Find Food and search by city or area. You can also filter listings by food type.</p></details>
+    <details><summary>How is pickup arranged?</summary><p>Recipients can submit a request with a pickup note. Please coordinate the exact time and handoff details directly and follow applicable food-safety guidance.</p></details>
+  </section>
+</main>
+{% endblock %}

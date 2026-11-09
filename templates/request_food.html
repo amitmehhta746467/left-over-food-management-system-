@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Request Food — LeftoverBite{% endblock %}
+{% block content %}
+<div class="form-page single"><form class="panel-form" method="post">{% csrf_token %}<div class="eyebrow">REQUEST FOOD</div><h1>Reserve a <em>meal</em></h1>
+<label>Your name<input name="name" required placeholder="NGO / receiver name"></label>
+<label>Available donation<select name="donation_id" required>{% for d in donations %}<option value="{{ d.id }}" {% if request.GET.donation == d.id|stringformat:"s" %}selected{% endif %}>{{ d.title }} — {{ d.quantity }} servings — {{ d.city }}</option>{% empty %}<option disabled>No available donations</option>{% endfor %}</select></label>
+<label>Servings requested<input type="number" min="1" name="servings_requested" required></label>
+<label>Pickup note<textarea name="pickup_note" placeholder="Preferred pickup time, contact information, etc."></textarea></label>
+<button class="btn full">Submit Food Request →</button>
+</form></div>
+{% endblock %}

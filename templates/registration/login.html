@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Log in — LeftoverBite{% endblock %}
+{% block content %}
+<main class="form-page single">
+  <form class="panel-form" method="post">
+    {% csrf_token %}
+    <h2>Welcome back</h2>
+    <p class="muted">Log in to your LeftoverBite account.</p>
+    {% if form.errors %}<p class="errorlist">Your username or password was not recognized. Please try again.</p>{% endif %}
+    <input type="hidden" name="next" value="{{ next }}">
+    {{ form.as_p }}
+    <button class="btn full" type="submit">Log in</button>
+    <p class="auth-switch">New to LeftoverBite? <a href="{% url 'register' %}">Create an account</a></p>
+  </form>
+</main>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Donate Food — LeftoverBite{% endblock %}
+{% block content %}
+<div class="form-page"><div class="form-intro"><div class="eyebrow">DONATE SURPLUS FOOD</div><h1>Share food.<br><em>Reduce waste.</em></h1><p>Post your extra food and connect it with people and organizations who can collect it safely.</p><div class="mini-impact">🍱 <b>Every listing helps</b><br><span>Give good food a second chance.</span></div></div>
+<form class="panel-form" method="post">{% csrf_token %}
+<h2>Donation details</h2>
+<label>Your name<input name="name" required placeholder="Restaurant / donor name"></label>
+<label>Food title<input name="title" required placeholder="e.g. 50 Fresh Meal Boxes"></label>
+<div class="two"><label>Food type<select name="food_type" required>{% for value,label in food_types %}<option value="{{ value }}">{{ label }}</option>{% endfor %}</select></label><label>Servings<input type="number" min="1" name="quantity" required placeholder="50"></label></div>
+<label>Description<textarea name="description" placeholder="Describe the food, packaging and any important details"></textarea></label>
+<div class="two"><label>Pickup address<input name="pickup_address" required placeholder="Street / building"></label><label>City<input name="city" value="Yamuna Nagar" required></label></div>
+<div class="two"><label>Prepared at<input type="datetime-local" name="prepared_at" required></label><label>Safe until<input type="datetime-local" name="safe_until" required></label></div>
+<button class="btn full">Post Donation →</button>
+</form></div>
+{% endblock %}

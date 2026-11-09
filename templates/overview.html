@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Community Overview — LeftoverBite{% endblock %}
+{% block content %}
+<main class="content-page">
+  <section class="page-head overview-head">
+    <div class="eyebrow">THE COMMUNITY AT A GLANCE</div>
+    <h1>Food shared.<br><em>Good multiplied.</em></h1>
+    <p>A live overview of food listed and requests made through LeftoverBite.</p>
+  </section>
+
+  <section class="overview-stats" aria-label="Community impact statistics">
+    <article><span class="stat-icon">🍱</span><strong>{{ stats.donations }}</strong><span>Food listings</span></article>
+    <article><span class="stat-icon">🍽️</span><strong>{{ stats.servings }}</strong><span>Servings listed</span></article>
+    <article><span class="stat-icon">📍</span><strong>{{ stats.available }}</strong><span>Available now</span></article>
+    <article><span class="stat-icon">💚</span><strong>{{ stats.requests }}</strong><span>Requests placed</span></article>
+  </section>
+
+  <section class="overview-panel">
+    <div class="section-head"><div><div class="eyebrow">FOOD CATEGORIES</div><h2>What communities<br>are <em>sharing.</em></h2></div><a class="text-link" href="{% url 'donations' %}">Browse available food →</a></div>
+    <div class="category-table">
+      <div class="category-row category-header"><span>Food type</span><span>Listings</span><span>Servings</span><span></span></div>
+      {% for category in categories %}
+      <div class="category-row"><span><a href="{% url 'donations' %}?food_type={{ category.value }}">{{ category.label }}</a></span><span>{{ category.listings }}</span><span>{{ category.servings }}</span><a class="text-link" href="{% url 'donations' %}?food_type={{ category.value }}">Explore →</a></div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="overview-cta">
+    <div><div class="eyebrow">BE PART OF THE IMPACT</div><h2>Have extra? Share it.</h2><p>Every clear, timely listing makes it easier for someone nearby to request food.</p></div>
+    <a class="btn" href="{% url 'create-donation' %}">Create a donation →</a>
+  </section>
+</main>
+{% endblock %}

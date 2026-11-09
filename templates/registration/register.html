@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Create account — LeftoverBite{% endblock %}
+{% block content %}
+<main class="form-page single">
+  <form class="panel-form" method="post">
+    {% csrf_token %}
+    <h2>Create your account</h2>
+    <p class="muted">Join the community rescuing good food and reducing waste.</p>
+    {{ form.as_p }}
+    <button class="btn full" type="submit">Register</button>
+    <p class="auth-switch">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+  </form>
+</main>
+{% endblock %}

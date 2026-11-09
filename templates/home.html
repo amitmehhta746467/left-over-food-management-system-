@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}LeftoverBite — Good Food, Shared{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">SMART FOOD RESCUE</div>
+    <h1>Good Food<br><em>Shouldn't Go</em><br>to Waste.</h1>
+    <p>Connect surplus food from restaurants, hotels, events and homes with NGOs and people who need it.</p>
+    <form class="search" method="get" action="{% url 'donations' %}">
+      <label class="sr-only" for="citySearch">City or area</label>
+      <span aria-hidden="true">📍</span><input id="citySearch" name="city" placeholder="Enter your city or area" value="Yamuna Nagar">
+      <button type="submit">Find Food <span aria-hidden="true">→</span></button>
+    </form>
+    <div class="trust"><span>✓ Fast Pickup</span><span>✓ Safe Food</span><span>✓ Community Powered</span></div>
+  </div>
+  <div class="hero-art">
+    <div class="blob"></div>
+    <div class="food-card main-food">🍛</div>
+    <div class="food-card small-food">🥗</div>
+    <div class="leaf">🌿</div>
+  </div>
+</section>
+
+<section class="categories">
+  <a class="cat" href="{% url 'donations' %}?food_type=meal">🍱<b>Meals</b><small>Find meals →</small></a>
+  <a class="cat" href="{% url 'donations' %}?food_type=rice">🍚<b>Rice</b><small>Find rice →</small></a>
+  <a class="cat" href="{% url 'donations' %}?food_type=bread">🍞<b>Bread</b><small>Find bread →</small></a>
+  <a class="cat" href="{% url 'donations' %}?food_type=vegetables">🥗<b>Vegetables</b><small>Find vegetables →</small></a>
+  <a class="cat" href="{% url 'donations' %}?food_type=fruits">🍎<b>Fruits</b><small>Find fruits →</small></a>
+  <a class="cat" href="{% url 'donations' %}?food_type=bakery">🧁<b>Bakery</b><small>Find bakery food →</small></a>
+</section>
+
+<section class="section">
+  <div class="section-head"><div><div class="eyebrow">AVAILABLE NEAR YOU</div><h2>Fresh Food Waiting<br>to Be <em>Rescued</em></h2></div><a class="text-link" href="{% url 'donations' %}">View all →</a></div>
+  <div class="food-grid">
+  {% for d in donations %}
+    <article class="food-card-ui">
+      <div class="photo {% cycle 'p1' 'p2' 'p3' 'p4' %}"><span>{{ d.food_type|title }}</span></div>
+      <div class="card-body"><h3>{{ d.title }}</h3><p>{{ d.city }} · {{ d.quantity }} servings</p><div class="card-bottom"><b>Ready for pickup</b><a href="{% url 'request-food' %}">Request →</a></div></div>
+    </article>
+  {% empty %}
+    <div class="empty">No donations yet. <a href="{% url 'create-donation' %}">Post the first donation →</a></div>
+  {% endfor %}
+  </div>
+</section>
+
+<section class="steps-section">
+  <div class="section-head"><div><div class="eyebrow">HOW IT WORKS</div><h2>Small steps.<br><em>Real impact.</em></h2></div><a class="text-link" href="{% url 'overview' %}">See the overview →</a></div>
+  <div class="steps-grid">
+    <article><span>01</span><h3>Share surplus</h3><p>Post what you have, how much is available and when it is safe to collect.</p></article>
+    <article><span>02</span><h3>Find a match</h3><p>Local people and organizations browse available food and request what they can use.</p></article>
+    <article><span>03</span><h3>Arrange pickup</h3><p>Coordinate collection directly and help good food reach someone who needs it.</p></article>
+  </div>
+</section>
+
+<section class="impact">
+  <div><div class="eyebrow">OUR IMPACT</div><h2>Every meal rescued<br>makes a <em>difference.</em></h2></div>
+  <div class="stats"><div><strong>{{ stats.donations }}</strong><span>Donations</span></div><div><strong>{{ stats.servings }}</strong><span>Servings Listed</span></div><div><strong>{{ stats.available }}</strong><span>Available Now</span></div><div><strong>{{ stats.requests }}</strong><span>Food Requests</span></div></div>
+</section>
+
+<section class="cta"><div><div class="eyebrow">HAVE SURPLUS FOOD?</div><h2>Turn extra food into<br>someone's <em>next meal.</em></h2><p>Restaurants, hostels, homes, events and shops can make a difference in minutes.</p></div><div class="cta-actions"><a class="btn" href="{% url 'create-donation' %}">Donate Food →</a><a class="cta-secondary" href="{% url 'about' %}">Learn about us</a></div></section>
+{% endblock %}
