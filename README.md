@@ -26,19 +26,6 @@ python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
 ```
-
-Open:
-- Website: http://127.0.0.1:8000/
-- About: http://127.0.0.1:8000/about/
-- Community overview: http://127.0.0.1:8000/overview/
-- Available food: http://127.0.0.1:8000/donations/
-- Donate food: http://127.0.0.1:8000/donate/
-- Request food: http://127.0.0.1:8000/request-food/
-- Register: http://127.0.0.1:8000/register/
-- Log in: http://127.0.0.1:8000/login/
-- API root: http://127.0.0.1:8000/api/
-- Admin: http://127.0.0.1:8000/admin/
-
 ## REST endpoints
 
 - GET/POST `/api/donations/`
